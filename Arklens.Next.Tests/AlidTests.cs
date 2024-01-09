@@ -1,11 +1,19 @@
 using Arklens.Next.Core;
-using Arklens.Next.Entities.Alignments;
-using Xunit.Abstractions;
+using Arklens.Next.Entities;
+using Arklens.Next.Entities.Races;
+using Arklens.Next.Entities.Traits;
+using Arklens.Next.Search;
+using SourceGeneratedAlidSearchGenerator;
 
 namespace Arklens.Next.Tests;
 
-public class AlidTests(ITestOutputHelper testOutputHelper)
+public class AlidTests
 {
+    private static readonly IAlidSearch[] AlidSearches =
+    [
+        new ReflectiveAlidSearch(), SourceGeneratedAlidSearch.Instance
+    ];
+
     [Theory]
     [InlineData("weapon")]
     [InlineData("spell")]
@@ -20,7 +28,7 @@ public class AlidTests(ITestOutputHelper testOutputHelper)
     [Theory]
     [InlineData("Weapon")]
     [InlineData("GreaterFire")]
-    [InlineData("pascalCaseName")]
+    [InlineData("camelCaseName")]
     public void TestAlidCreation(string wrongCaseAlidName)
     {
         _ = AlidName.Create(wrongCaseAlidName);
@@ -37,12 +45,27 @@ public class AlidTests(ITestOutputHelper testOutputHelper)
         Assert.Equal(alidText, alid.Text);
     }
 
-    [Fact]
-    public void TestAlignmentsAlids()
+    [Theory]
+    [InlineData("illegal")]
+    [InlineData("alid:f*rbiddenCh^rs")]
+    [InlineData("alid:which_is_too_long_to_be_validated_because_maximum_length_of_alid_text_is_128_characters_but_this_string_is_131_characters_long")]
+    public void TestAlidParseFail(string alidText)
     {
-        foreach (var alignment in Alignment.AllValues)
+        Assert.False(Alid.TryParse(alidText, null, out var undefined));
+        Assert.Same(undefined, Alid.Undefined);
+        Assert.Throws<FormatException>(() => Alid.Parse(alidText));
+    }
+
+    [Theory]
+    [InlineData("alignment:neutral", typeof(Alignment))]
+    [InlineData("deity:mortess", typeof(Deity))]
+    [InlineData("race:human", typeof(Race))]
+    [InlineData("trait:handyman", typeof(Trait))]
+    public void TestAlidSearches(string alid, Type expectedType)
+    {
+        foreach (var search in AlidSearches)
         {
-            testOutputHelper.WriteLine(alignment.GetAlid().Text);
+            Assert.IsType(expectedType, search.Get(Alid.Parse(alid)));
         }
     }
 }

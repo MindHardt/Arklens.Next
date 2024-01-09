@@ -76,7 +76,7 @@ public partial record Alid(
         bool isGroup = false)
         => new(domains.CreateAlidNameCollection(), name.CreateAlidName(), modifiers?.CreateAlidNameCollection(), isGroup);
 
-    public static Alid Parse(string s, IFormatProvider? provider)
+    public static Alid Parse(string s, IFormatProvider? provider = null)
     {
         if (s.Length > MaxLength || ValidationRegex().Match(s) is not { Success: true } match)
         {

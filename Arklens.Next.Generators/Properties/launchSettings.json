@@ -3,7 +3,7 @@
   "profiles": {
     "DebugRoslynSourceGenerator": {
       "commandName": "DebugRoslynComponent",
-      "targetProject": "../IEnumerationGenerator.Sample/IEnumerationGenerator.Sample.csproj"
+      "targetProject": "../Arklens.Next/Arklens.Next.csproj"
     }
   }
 }
