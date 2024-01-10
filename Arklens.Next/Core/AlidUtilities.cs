@@ -40,6 +40,13 @@ public static class AlidUtilities
     }
 
     private static readonly Dictionary<Type, AlidNameCollection> DomainsCache = new();
+    /// <summary>
+    /// Gets a <see cref="AlidNameCollection"/> that contains names for domains of this type.
+    /// </summary>
+    /// <param name="type"></param>
+    /// <param name="cache">Whether the result should be cached for reuse.</param>
+    /// <returns></returns>
+    /// <remarks>This method relies on reflection so the results can be cached for better performance.</remarks>
     public static AlidNameCollection GetDomains(this Type type, bool cache = true)
     {
         if (DomainsCache.TryGetValue(type, out var cachedDomains))

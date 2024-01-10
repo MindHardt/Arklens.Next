@@ -8,12 +8,9 @@ namespace Arklens.Next.Entities.Traits;
 [AlidDomain]
 [SearchInclude]
 [GenerateEnumeration]
-public partial record Trait : IAlidEntity
+public partial record Trait : AlidEntity
 {
-    public AlidName OwnName { get; }
-
-    private Trait([CallerMemberName] string ownName = "")
+    public Trait([CallerMemberName] string ownName = "") : base(ownName)
     {
-        OwnName = AlidName.Create(ownName);
     }
 }

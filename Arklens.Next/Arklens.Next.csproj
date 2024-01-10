@@ -10,4 +10,22 @@
       <ProjectReference Include="..\Arklens.Next.Generators\Arklens.Next.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Update="Entities\Traits\Trait.Racial.cs">
+        <DependentUpon>Trait.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Entities\DamageType.Elemental.cs">
+        <DependentUpon>DamageType.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Entities\DamageType.Magical.cs">
+        <DependentUpon>DamageType.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Entities\DamageType.Natural.cs">
+        <DependentUpon>DamageType.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Entities\DamageType.Physical.cs">
+        <DependentUpon>DamageType.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
 </Project>

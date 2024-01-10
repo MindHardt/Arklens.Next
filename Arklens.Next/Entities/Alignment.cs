@@ -8,17 +8,15 @@ namespace Arklens.Next.Entities;
 [AlidDomain]
 [SearchInclude]
 [GenerateEnumeration]
-public readonly partial record struct Alignment : IAlidEntity
+public partial record Alignment : AlidEntity
 {
-    public AlidName OwnName { get; }
     public Goodness Goodness { get; }
     public Lawfulness Lawfulness { get; }
 
-    private Alignment(Lawfulness lawfulness, Goodness goodness, [CallerMemberName] string ownName = "")
+    private Alignment(Lawfulness lawfulness, Goodness goodness, [CallerMemberName] string ownName = "") : base(ownName)
     {
         Lawfulness = lawfulness;
         Goodness = goodness;
-        OwnName = AlidName.Create(ownName);
     }
 
     public static Alignment LawfulGood { get; } = new(Lawfulness.Lawful, Goodness.Good);

@@ -11,12 +11,14 @@ namespace Arklens.Next.Core;
 /// </para>
 /// <para>
 /// ○ <see cref="Domains"/>, which describe the type of an entity. Entity must have at least one domain.
+/// They are followed by ':' symbol.
 /// </para>
 /// <para>
 /// ○ <see cref="Name"/>, which must be unique per domain.
 /// </para>
 /// <para>
 /// ○ <see cref="Modifiers"/>, which are responsible for variations within the type. They are optional in most cases.
+/// They are preceded by '+' symbol.
 /// </para>
 /// <para>
 /// Examples of valid <see cref="Alid"/>s:

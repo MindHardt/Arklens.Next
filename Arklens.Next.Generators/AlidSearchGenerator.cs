@@ -106,22 +106,24 @@ public class SourceGeneratedAlidSearchGenerator : IIncrementalGenerator
               [global::System.CodeDom.Compiler.GeneratedCode("{{nameof(SourceGeneratedAlidSearchGenerator)}}", "1.0")]
               public class {{TypeName}} : global::Arklens.Next.Search.IAlidSearch
               {
-                private static readonly IReadOnlyCollection<IAlidEntity> IncludedEntities = 
+                private static readonly IReadOnlyCollection<AlidEntity> IncludedEnumerations = 
                 [
               {{string.Join(",\n", propertyNames)}}
                 ];
               
-                private readonly FrozenDictionary<Alid, IAlidEntity> _innerDictionary;
+                private readonly FrozenDictionary<Alid, AlidEntity> _innerDictionary;
                 
                 public static {{TypeName}} Instance { get; } = new();
                 
                 private {{TypeName}}()
                 {
-                    _innerDictionary = IncludedEntities.ToFrozenDictionary(x => x.Alid, x => x);
+                    _innerDictionary = IncludedEnumerations.ToFrozenDictionary(x => x.Alid, x => x);
                 }
                   
-                public IAlidEntity? Get(Alid alid)
+                public AlidEntity? Get(Alid alid)
                     => _innerDictionary.GetValueOrDefault(alid);
+                    
+                public IReadOnlyCollection<AlidEntity> IncludedEntities => _innerDictionary.Values;
               }
               """;
 

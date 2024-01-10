@@ -4,5 +4,6 @@ namespace Arklens.Next.Search;
 
 public interface IAlidSearch
 {
-    public IAlidEntity? Get(Alid alid);
+    public AlidEntity? Get(Alid alid);
+    public IReadOnlyCollection<AlidEntity> IncludedEntities { get; }
 }

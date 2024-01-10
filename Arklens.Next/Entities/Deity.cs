@@ -8,15 +8,13 @@ namespace Arklens.Next.Entities;
 [AlidDomain]
 [GenerateEnumeration]
 [SearchInclude]
-public partial record Deity : IAlidEntity
+public partial record Deity : AlidEntity
 {
-    public AlidName OwnName { get; }
     public Alignment Alignment { get; }
 
-    private Deity(Alignment alignment, [CallerMemberName] string ownName = "")
+    private Deity(Alignment alignment, [CallerMemberName] string ownName = "") : base(ownName)
     {
         Alignment = alignment;
-        OwnName = AlidName.Create(ownName);
     }
 
     public static Deity Neras { get; } = new(Alignment.LawfulGood);

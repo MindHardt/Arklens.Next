@@ -2,6 +2,9 @@
 
 namespace Arklens.Next.Core;
 
+/// <summary>
+/// A readonly collection of <see cref="AlidName"/>s.
+/// </summary>
 public record AlidNameCollection : IReadOnlyList<AlidName>
 {
     public IReadOnlyList<AlidName> Values { get; } = [];

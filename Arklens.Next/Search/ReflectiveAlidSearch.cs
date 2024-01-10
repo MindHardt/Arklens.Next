@@ -12,7 +12,7 @@ namespace Arklens.Next.Search;
 /// </summary>
 public class ReflectiveAlidSearch : IAlidSearch
 {
-    private readonly FrozenDictionary<Alid, IAlidEntity> _innerDictionary;
+    private readonly FrozenDictionary<Alid, AlidEntity> _innerDictionary;
 
     public IReadOnlyCollection<Assembly> IncludedAssemblies { get; }
 
@@ -29,13 +29,13 @@ public class ReflectiveAlidSearch : IAlidSearch
                 @interface.IsGenericType &&
                 @interface.GetGenericTypeDefinition() == typeof(IEnumeration<>)));
 
-        var tempDictionary = new Dictionary<Alid, IAlidEntity>();
+        var tempDictionary = new Dictionary<Alid, AlidEntity>();
         foreach (var enumType in enumTypes)
         {
             var allValuesProperty = enumType.GetProperty(nameof(IEnumeration<object>.AllValues))!;
             var allValues = allValuesProperty.GetValue(null) as IEnumerable;
 
-            foreach (var value in allValues!.Cast<IAlidEntity>())
+            foreach (var value in allValues!.Cast<AlidEntity>())
             {
                 tempDictionary.TryAdd(value.Alid, value);
             }
@@ -46,6 +46,8 @@ public class ReflectiveAlidSearch : IAlidSearch
             x => x.Value);
     }
 
-    public IAlidEntity? Get(Alid alid)
+    public AlidEntity? Get(Alid alid)
         => _innerDictionary.GetValueOrDefault(alid);
+
+    public IReadOnlyCollection<AlidEntity> IncludedEntities => _innerDictionary.Values;
 }

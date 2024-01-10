@@ -3,6 +3,10 @@ using System.Text.RegularExpressions;
 
 namespace Arklens.Next.Core;
 
+/// <summary>
+/// A part of <see cref="Alid"/>. This can represent a domain, own name or modifier name.
+/// </summary>
+/// <param name="Value"></param>
 public readonly partial record struct AlidName(string Value)
 {
     /// <summary>

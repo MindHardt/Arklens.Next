@@ -4,10 +4,11 @@ using Arklens.Next.Entities.Races;
 using Arklens.Next.Entities.Traits;
 using Arklens.Next.Search;
 using SourceGeneratedAlidSearchGenerator;
+using Xunit.Abstractions;
 
 namespace Arklens.Next.Tests;
 
-public class AlidTests
+public class AlidTests(ITestOutputHelper output)
 {
     private static readonly IAlidSearch[] AlidSearches =
     [
@@ -66,6 +67,22 @@ public class AlidTests
         foreach (var search in AlidSearches)
         {
             Assert.IsType(expectedType, search.Get(Alid.Parse(alid)));
+        }
+    }
+
+    [Fact]
+    public void ListAlidValues()
+    {
+        foreach (var search in AlidSearches)
+        {
+            var searchName = search.GetType().Name;
+            var includedEntities = search.IncludedEntities
+                .OrderBy(x => x.Alid.Text)
+                .Select((x, i) => (x, i));
+            foreach (var entity in includedEntities)
+            {
+                output.WriteLine($"{searchName} {entity.i + 1}. {entity.x.Alid}");
+            }
         }
     }
 }

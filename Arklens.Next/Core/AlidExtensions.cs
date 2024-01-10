@@ -27,12 +27,4 @@ public static class AlidExtensions
     /// <returns></returns>
     public static AlidName CreateAlidName(this string value)
         => AlidName.Create(value);
-
-    /// <summary>
-    /// Gets the <see cref="Alid"/> of this <see cref="IAlidEntity"/>.
-    /// </summary>
-    /// <param name="alidEntity"></param>
-    /// <returns></returns>
-    public static Alid GetAlid(this IAlidEntity alidEntity)
-        => alidEntity.Alid;
 }

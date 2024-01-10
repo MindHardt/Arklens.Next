@@ -9,15 +9,13 @@ namespace Arklens.Next.Entities.Races;
 [AlidDomain]
 [SearchInclude]
 [GenerateEnumeration]
-public partial record Race : IAlidEntity
+public partial record Race : AlidEntity
 {
     public RaceTraits Traits { get; }
-    public AlidName OwnName { get; }
 
-    private Race(RaceTraits raceTraits, [CallerMemberName] string ownName = "")
+    private Race(RaceTraits raceTraits, [CallerMemberName] string ownName = "") : base(ownName)
     {
         Traits = raceTraits;
-        OwnName = AlidName.Create(ownName);
     }
 
     public static Race Human { get; } = new((Trait.MindFlexibility, Trait.Handyman));
