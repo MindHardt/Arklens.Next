@@ -16,18 +16,47 @@ public partial record Race : AlidEntity
     private readonly LocalizationFactory _localizationFactory;
     public override string GetLocalizedName(CultureInfo? cultureInfo = null) => _localizationFactory(cultureInfo);
 
-    public RaceTraits Traits { get; }
+    public required RaceTraits Traits { get; init; }
+    public required RacialCharacteristicImpact? CharacteristicImpact { get; init; }
 
-    private Race(RaceTraits raceTraits, [CallerMemberName] string ownName = "") : base(ownName)
+    private Race([CallerMemberName] string ownName = "") : base(ownName)
     {
-        Traits = raceTraits;
         _localizationFactory = RaceResources.Find(ownName);
     }
 
-    public static Race Human { get; } = new((Trait.MindFlexibility, Trait.Handyman));
-    public static Race Elf { get; } = new((Trait.Perception, Trait.Insomnia));
-    public static Race Dwarf { get; } = new((Trait.RockHard, Trait.SlowButSteady));
-    public static Race Kitsune { get; } = new((Trait.WillToLive, Trait.BeastFolk));
-    public static Race Minas { get; } = new((Trait.SecondWind, Trait.PlainsWalk));
-    public static Race Serpent { get; } = new((Trait.Amphibious, Trait.Scales));
+    public static Race Human { get; } = new()
+    {
+        Traits = (Trait.MindFlexibility, Trait.Handyman),
+        CharacteristicImpact = null
+    };
+
+    public static Race Elf { get; } = new()
+    {
+        Traits = (Trait.Perception, Trait.Insomnia),
+        CharacteristicImpact = new RacialCharacteristicImpact(Dex: +2, Int: +2, Con: -2)
+    };
+
+    public static Race Dwarf { get; } = new()
+    {
+        Traits = (Trait.RockHard, Trait.SlowButSteady),
+        CharacteristicImpact = new RacialCharacteristicImpact(Con: +2, Wis: +2, Cha: -2)
+    };
+
+    public static Race Kitsune { get; } = new()
+    {
+        Traits = (Trait.WillToLive, Trait.BeastFolk),
+        CharacteristicImpact = new RacialCharacteristicImpact(Dex: +2, Cha: +2, Str: -2)
+    };
+
+    public static Race Minas { get; } = new()
+    {
+        Traits = (Trait.SecondWind, Trait.PlainsWalk),
+        CharacteristicImpact = new RacialCharacteristicImpact(Str: +2, Con: +2, Int: -2)
+    };
+
+    public static Race Serpent { get; } = new()
+    {
+        Traits = (Trait.Amphibious, Trait.Scales),
+        CharacteristicImpact = new RacialCharacteristicImpact(Con: +2, Int: +2, Wis: -2)
+    };
 }
