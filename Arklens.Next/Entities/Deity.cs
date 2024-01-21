@@ -1,6 +1,8 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Globalization;
+using System.Runtime.CompilerServices;
 using Arklens.Next.Core;
 using EnumerationGenerator;
+using ResourcesGenerator;
 using SourceGeneratedAlidSearchGenerator;
 
 namespace Arklens.Next.Entities;
@@ -10,11 +12,15 @@ namespace Arklens.Next.Entities;
 [SearchInclude]
 public partial record Deity : AlidEntity
 {
+    private readonly Func<CultureInfo?, string> _localizationFactory;
+
     public Alignment Alignment { get; }
+    public override string GetLocalizedName(CultureInfo? cultureInfo = null) => _localizationFactory(cultureInfo);
 
     private Deity(Alignment alignment, [CallerMemberName] string ownName = "") : base(ownName)
     {
         Alignment = alignment;
+        _localizationFactory = culture => DeityResources.Find(ownName, culture);
     }
 
     public static Deity Neras { get; } = new(Alignment.LawfulGood);

@@ -1,6 +1,8 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Globalization;
+using System.Runtime.CompilerServices;
 using Arklens.Next.Core;
 using EnumerationGenerator;
+using ResourcesGenerator;
 using SourceGeneratedAlidSearchGenerator;
 
 namespace Arklens.Next.Entities;
@@ -10,6 +12,10 @@ namespace Arklens.Next.Entities;
 [GenerateEnumeration]
 public partial record DamageType : AlidEntity
 {
+    private readonly Func<CultureInfo?, string> _localizationFactory;
+
+    public override string GetLocalizedName(CultureInfo? cultureInfo = null) => _localizationFactory(cultureInfo);
+
     /// <summary>
     /// Flags used to indicate some damage type properties.
     /// </summary>
@@ -29,6 +35,7 @@ public partial record DamageType : AlidEntity
             .Select(x => x.Flags)
             .Aggregate((r, l) => r | l)
             ?? default;
+        _localizationFactory = culture => DamageResources.Find(ownName, culture);
     }
 }
 

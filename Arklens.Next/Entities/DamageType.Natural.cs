@@ -2,5 +2,5 @@
 
 public partial record DamageType
 {
-    public static DamageType Poison { get; } = new(DamageTypeFlags.Natural);
+    public static DamageType Venom { get; } = new(DamageTypeFlags.Natural);
 }

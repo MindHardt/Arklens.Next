@@ -1,0 +1,22 @@
+Name;;en
+
+# Elemental
+Fire;Огонь;Fire
+Frost;Холод;Frost
+Acid;Кислота;Acid
+Lightning;Молния;Lightning
+Sound;Звук;Sound
+
+# Magical
+Curse;Проклятие;Curse
+
+# Natural
+Venom;Яд;Venom
+
+# Physical
+Piercing;Колющий;Piercing
+Cutting;Режущий;Cutting
+Chopping;Рубящий;Chopping
+Crushing;Дробящий;Crushing
+Bite;Укус;Bite
+Claws;Когти;Claws

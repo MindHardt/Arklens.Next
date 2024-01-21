@@ -1,7 +1,9 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Globalization;
+using System.Runtime.CompilerServices;
 using Arklens.Next.Core;
 using Arklens.Next.Entities.Traits;
 using EnumerationGenerator;
+using ResourcesGenerator;
 using SourceGeneratedAlidSearchGenerator;
 
 namespace Arklens.Next.Entities.Races;
@@ -11,11 +13,15 @@ namespace Arklens.Next.Entities.Races;
 [GenerateEnumeration]
 public partial record Race : AlidEntity
 {
+    private readonly Func<CultureInfo?, string> _localizationFactory;
+    public override string GetLocalizedName(CultureInfo? cultureInfo = null) => _localizationFactory(cultureInfo);
+
     public RaceTraits Traits { get; }
 
     private Race(RaceTraits raceTraits, [CallerMemberName] string ownName = "") : base(ownName)
     {
         Traits = raceTraits;
+        _localizationFactory = culture => RaceResources.Find(ownName, culture);
     }
 
     public static Race Human { get; } = new((Trait.MindFlexibility, Trait.Handyman));

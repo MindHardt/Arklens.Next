@@ -1,0 +1,3 @@
+[submodule "BetterResources"]
+	path = BetterResources
+	url = https://github.com/MindHardt/BetterResources

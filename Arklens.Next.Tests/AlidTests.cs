@@ -1,3 +1,4 @@
+using System.Globalization;
 using Arklens.Next.Core;
 using Arklens.Next.Entities;
 using Arklens.Next.Entities.Races;
@@ -10,6 +11,11 @@ namespace Arklens.Next.Tests;
 
 public class AlidTests(ITestOutputHelper output)
 {
+    private static readonly CultureInfo[] IncludedCultures =
+    [
+        CultureInfo.GetCultureInfo("en"), CultureInfo.GetCultureInfo("ru")
+    ];
+
     private static readonly IAlidSearch[] AlidSearches =
     [
         new ReflectiveAlidSearch(), SourceGeneratedAlidSearch.Instance
@@ -71,7 +77,7 @@ public class AlidTests(ITestOutputHelper output)
     }
 
     [Fact]
-    public void ListAlidValues()
+    public void TestLocalizedNames()
     {
         foreach (var search in AlidSearches)
         {
@@ -81,7 +87,13 @@ public class AlidTests(ITestOutputHelper output)
                 .Select((x, i) => (x, i));
             foreach (var entity in includedEntities)
             {
-                output.WriteLine($"{searchName} {entity.i + 1}. {entity.x.Alid}");
+                output.WriteLine($"{searchName} {entity.i + 1}. {entity.x.Alid} {entity.x.GetLocalizedName()}");
+
+                var localizations = IncludedCultures
+                    .Select(culture => entity.x.GetLocalizedName(culture))
+                    .ToArray();
+
+                Assert.NotEqual(localizations[0], localizations[1]);
             }
         }
     }

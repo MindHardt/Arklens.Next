@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Arklens.Next.Generators\Arklens.Next.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+      <ProjectReference Include="..\BetterResources\BetterResources\BetterResources\BetterResources.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
 
     <ItemGroup>
@@ -26,6 +27,25 @@
       <Compile Update="Entities\DamageType.Physical.cs">
         <DependentUpon>DamageType.cs</DependentUpon>
       </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Entities\AlignmentResources.csv" />
+      <AdditionalFiles Include="Entities\AlignmentResources.csv">
+        <DependentUpon>Alignment.cs</DependentUpon>
+      </AdditionalFiles>
+      <None Remove="Entities\DamageResources.csv" />
+      <AdditionalFiles Include="Entities\DamageResources.csv">
+        <DependentUpon>DamageType.cs</DependentUpon>
+      </AdditionalFiles>
+      <None Remove="Entities\DeityResources.csv" />
+      <AdditionalFiles Include="Entities\DeityResources.csv">
+        <DependentUpon>Deity.cs</DependentUpon>
+      </AdditionalFiles>
+      <None Remove="Entities\Traits\TraitResources.csv" />
+      <AdditionalFiles Include="Entities\Traits\TraitResources.csv" />
+      <None Remove="Entities\Races\RaceResources.csv" />
+      <AdditionalFiles Include="Entities\Races\RaceResources.csv" />
     </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Globalization;
 
 namespace Arklens.Next.Core;
 
@@ -8,6 +8,13 @@ public abstract record AlidEntity
     /// This instance's <see cref="AlidName"/>.
     /// </summary>
     public AlidName OwnName { get; }
+
+    /// <summary>
+    /// Gets a localized name of this <see cref="AlidEntity"/>.
+    /// </summary>
+    /// <param name="cultureInfo"></param>
+    /// <returns></returns>
+    public abstract string GetLocalizedName(CultureInfo? cultureInfo = null);
 
     protected AlidEntity(string ownName)
     {
