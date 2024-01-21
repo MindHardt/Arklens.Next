@@ -13,7 +13,7 @@ namespace Arklens.Next.Entities.Races;
 [GenerateEnumeration]
 public partial record Race : AlidEntity
 {
-    private readonly Func<CultureInfo?, string> _localizationFactory;
+    private readonly LocalizationFactory _localizationFactory;
     public override string GetLocalizedName(CultureInfo? cultureInfo = null) => _localizationFactory(cultureInfo);
 
     public RaceTraits Traits { get; }
@@ -21,7 +21,7 @@ public partial record Race : AlidEntity
     private Race(RaceTraits raceTraits, [CallerMemberName] string ownName = "") : base(ownName)
     {
         Traits = raceTraits;
-        _localizationFactory = culture => RaceResources.Find(ownName, culture);
+        _localizationFactory = RaceResources.Find(ownName);
     }
 
     public static Race Human { get; } = new((Trait.MindFlexibility, Trait.Handyman));

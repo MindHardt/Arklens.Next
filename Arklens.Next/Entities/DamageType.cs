@@ -12,7 +12,7 @@ namespace Arklens.Next.Entities;
 [GenerateEnumeration]
 public partial record DamageType : AlidEntity
 {
-    private readonly Func<CultureInfo?, string> _localizationFactory;
+    private readonly LocalizationFactory _localizationFactory;
 
     public override string GetLocalizedName(CultureInfo? cultureInfo = null) => _localizationFactory(cultureInfo);
 
@@ -35,7 +35,7 @@ public partial record DamageType : AlidEntity
             .Select(x => x.Flags)
             .Aggregate((r, l) => r | l)
             ?? default;
-        _localizationFactory = culture => DamageResources.Find(ownName, culture);
+        _localizationFactory = DamageResources.Find(ownName);
     }
 }
 

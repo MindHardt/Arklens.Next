@@ -12,7 +12,7 @@ namespace Arklens.Next.Entities;
 [SearchInclude]
 public partial record Deity : AlidEntity
 {
-    private readonly Func<CultureInfo?, string> _localizationFactory;
+    private readonly LocalizationFactory _localizationFactory;
 
     public Alignment Alignment { get; }
     public override string GetLocalizedName(CultureInfo? cultureInfo = null) => _localizationFactory(cultureInfo);
@@ -20,7 +20,7 @@ public partial record Deity : AlidEntity
     private Deity(Alignment alignment, [CallerMemberName] string ownName = "") : base(ownName)
     {
         Alignment = alignment;
-        _localizationFactory = culture => DeityResources.Find(ownName, culture);
+        _localizationFactory = DeityResources.Find(ownName);
     }
 
     public static Deity Neras { get; } = new(Alignment.LawfulGood);

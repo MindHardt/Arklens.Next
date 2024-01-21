@@ -12,11 +12,11 @@ namespace Arklens.Next.Entities.Traits;
 [GenerateEnumeration]
 public partial record Trait : AlidEntity
 {
-    private readonly Func<CultureInfo?, string> _localizationFactory;
+    private readonly LocalizationFactory _localizationFactory;
     public override string GetLocalizedName(CultureInfo? cultureInfo = null) => _localizationFactory(cultureInfo);
 
     public Trait([CallerMemberName] string ownName = "") : base(ownName)
     {
-        _localizationFactory = culture => TraitResources.Find(ownName, culture);
+        _localizationFactory = TraitResources.Find(ownName);
     }
 }
