@@ -4,12 +4,10 @@ using System.Runtime.CompilerServices;
 using Arklens.Next.Core;
 using EnumerationGenerator;
 using ResourcesGenerator;
-using SourceGeneratedAlidSearchGenerator;
 
 namespace Arklens.Next.Entities;
 
 [AlidDomain]
-[SearchInclude]
 [GenerateEnumeration]
 public partial record Alignment : AlidEntity
 {

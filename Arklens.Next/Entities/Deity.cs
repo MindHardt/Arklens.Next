@@ -3,13 +3,11 @@ using System.Runtime.CompilerServices;
 using Arklens.Next.Core;
 using EnumerationGenerator;
 using ResourcesGenerator;
-using SourceGeneratedAlidSearchGenerator;
 
 namespace Arklens.Next.Entities;
 
 [AlidDomain]
 [GenerateEnumeration]
-[SearchInclude]
 public partial record Deity : AlidEntity
 {
     private readonly LocalizationFactory _localizationFactory;

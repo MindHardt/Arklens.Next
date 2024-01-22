@@ -4,12 +4,10 @@ using Arklens.Next.Core;
 using Arklens.Next.Entities.Traits;
 using EnumerationGenerator;
 using ResourcesGenerator;
-using SourceGeneratedAlidSearchGenerator;
 
 namespace Arklens.Next.Entities.Races;
 
 [AlidDomain]
-[SearchInclude]
 [GenerateEnumeration]
 public partial record Race : AlidEntity
 {

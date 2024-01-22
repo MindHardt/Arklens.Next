@@ -3,8 +3,6 @@ using Arklens.Next.Core;
 using Arklens.Next.Entities;
 using Arklens.Next.Entities.Races;
 using Arklens.Next.Entities.Traits;
-using Arklens.Next.Search;
-using SourceGeneratedAlidSearchGenerator;
 using Xunit.Abstractions;
 
 namespace Arklens.Next.Tests;
@@ -14,11 +12,6 @@ public class AlidTests(ITestOutputHelper output)
     private static readonly CultureInfo[] IncludedCultures =
     [
         CultureInfo.GetCultureInfo("en"), CultureInfo.GetCultureInfo("ru")
-    ];
-
-    private static readonly IAlidSearch[] AlidSearches =
-    [
-        new ReflectiveAlidSearch(), SourceGeneratedAlidSearch.Instance
     ];
 
     [Theory]
@@ -70,31 +63,24 @@ public class AlidTests(ITestOutputHelper output)
     [InlineData("trait:handyman", typeof(Trait))]
     public void TestAlidSearches(string alid, Type expectedType)
     {
-        foreach (var search in AlidSearches)
-        {
-            Assert.IsType(expectedType, search.Get(Alid.Parse(alid)));
-        }
+        Assert.IsType(expectedType, AlidEntity.Get(alid));
     }
 
     [Fact]
     public void TestLocalizedNames()
     {
-        foreach (var search in AlidSearches)
+        var includedEntities = AlidEntity.AllValues
+            .OrderBy(x => x.Alid.Text)
+            .Select((x, i) => (x, i));
+        foreach (var entity in includedEntities)
         {
-            var searchName = search.GetType().Name;
-            var includedEntities = search.IncludedEntities
-                .OrderBy(x => x.Alid.Text)
-                .Select((x, i) => (x, i));
-            foreach (var entity in includedEntities)
-            {
-                output.WriteLine($"{searchName} {entity.i + 1}. {entity.x.Alid} {entity.x.GetLocalizedName()}");
+            output.WriteLine($"{entity.i + 1}. {entity.x.Alid} {entity.x.GetLocalizedName()}");
 
-                var localizations = IncludedCultures
-                    .Select(culture => entity.x.GetLocalizedName(culture))
-                    .ToArray();
+            var localizations = IncludedCultures
+                .Select(culture => entity.x.GetLocalizedName(culture))
+                .ToArray();
 
-                Assert.NotEqual(localizations[0], localizations[1]);
-            }
+            Assert.NotEqual(localizations[0], localizations[1]);
         }
     }
 }

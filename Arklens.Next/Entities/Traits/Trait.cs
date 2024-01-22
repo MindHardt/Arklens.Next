@@ -3,12 +3,10 @@ using System.Runtime.CompilerServices;
 using Arklens.Next.Core;
 using EnumerationGenerator;
 using ResourcesGenerator;
-using SourceGeneratedAlidSearchGenerator;
 
 namespace Arklens.Next.Entities.Traits;
 
 [AlidDomain]
-[SearchInclude]
 [GenerateEnumeration]
 public partial record Trait : AlidEntity
 {
