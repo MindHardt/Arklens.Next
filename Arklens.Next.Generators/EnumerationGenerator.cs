@@ -156,7 +156,7 @@ public class EnumerationGenerator : IIncrementalGenerator
                   {{GeneratedCodeAttributeText}}
                   partial {{keyword}} {{typeName}} : global::{{Namespace}}.{{InterfaceName}}<{{typeName}}>
                   {
-                      public static global::System.Collections.Generic.IReadOnlyCollection<{{typeName}}> {{InterfaceProperty}} { get; } = 
+                      public static new global::System.Collections.Generic.IReadOnlyCollection<{{typeName}}> {{InterfaceProperty}} { get; } = 
                       [
                   {{string.Join(",\n", properties.Select(x => $"\t\t{x.Name}"))}}
                       ];
