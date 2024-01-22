@@ -1,8 +1,10 @@
 using System.Globalization;
+using System.Text.Json;
 using Arklens.Next.Core;
 using Arklens.Next.Entities;
 using Arklens.Next.Entities.Races;
 using Arklens.Next.Entities.Traits;
+using Arklens.Next.Extra;
 using Xunit.Abstractions;
 
 namespace Arklens.Next.Tests;
@@ -82,5 +84,23 @@ public class AlidTests(ITestOutputHelper output)
 
             Assert.NotEqual(localizations[0], localizations[1]);
         }
+    }
+
+    [Theory]
+    [InlineData("\"deity:asterio\"", typeof(Deity))]
+    [InlineData("\"damage:cutting\"", typeof(DamageType))]
+    [InlineData("\"race:elf\"", typeof(Race))]
+    public void TestJson(string json, Type expectedType)
+    {
+        var jsonOptions = new JsonSerializerOptions
+        {
+            Converters = { new AlidEntityJsonConverterFactory() }
+        };
+
+        var entity = JsonSerializer.Deserialize(json, expectedType, jsonOptions);
+        Assert.IsType(expectedType, entity);
+
+        var serialized = JsonSerializer.Serialize(entity, jsonOptions);
+        Assert.Equal(json, serialized);
     }
 }
