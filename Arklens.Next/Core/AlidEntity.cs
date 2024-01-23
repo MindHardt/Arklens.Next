@@ -4,6 +4,8 @@ namespace Arklens.Next.Core;
 
 public abstract partial record AlidEntity
 {
+    private readonly LocalizationFactory _localizationFactory;
+
     /// <summary>
     /// This instance's <see cref="AlidName"/>.
     /// </summary>
@@ -12,13 +14,27 @@ public abstract partial record AlidEntity
     /// <summary>
     /// Gets a localized name of this <see cref="AlidEntity"/>.
     /// </summary>
-    /// <param name="cultureInfo"></param>
+    /// <param name="culture"></param>
     /// <returns></returns>
-    public abstract string GetLocalizedName(CultureInfo? cultureInfo = null);
+    protected virtual string GetLocalizedName(string culture) => _localizationFactory(culture);
 
-    protected AlidEntity(string ownName)
+    /// <inheritdoc cref="GetLocalizedName(string)"/>
+    public string GetLocalizedName(CultureInfo? cultureInfo = null)
+        => GetLocalizedName((cultureInfo ?? Thread.CurrentThread.CurrentCulture).TwoLetterISOLanguageName);
+
+    public const string EmojiCulture = "Emoji";
+
+    /// <summary>
+    /// Gets Emoji of this <see cref="AlidEntity"/>
+    /// </summary>
+    /// <returns></returns>
+    public string GetEmoji()
+        => GetLocalizedName(EmojiCulture);
+
+    protected AlidEntity(string ownName, Func<string, LocalizationFactory> resourceProvider)
     {
         OwnName = AlidName.Create(ownName);
+        _localizationFactory = resourceProvider(ownName);
     }
 
     /// <summary>

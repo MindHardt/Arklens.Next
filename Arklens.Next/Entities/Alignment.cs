@@ -14,7 +14,8 @@ public partial record Alignment : AlidEntity
     public Goodness Goodness { get; }
     public Lawfulness Lawfulness { get; }
 
-    private Alignment(Lawfulness lawfulness, Goodness goodness, [CallerMemberName] string ownName = "") : base(ownName)
+    private Alignment(Lawfulness lawfulness, Goodness goodness, [CallerMemberName] string ownName = "")
+        : base(ownName, AlignmentResources.FindString)
     {
         Lawfulness = lawfulness;
         Goodness = goodness;
@@ -29,30 +30,6 @@ public partial record Alignment : AlidEntity
     public static Alignment LawfulEvil { get; } = new(Lawfulness.Lawful, Goodness.Evil);
     public static Alignment NeutralEvil { get; } = new(Lawfulness.Neutral, Goodness.Evil);
     public static Alignment ChaoticEvil { get; } = new(Lawfulness.Chaotic, Goodness.Evil);
-
-    public override string GetLocalizedName(CultureInfo? cultureInfo = null)
-    {
-        if (this is { Lawfulness: Lawfulness.Neutral, Goodness: Goodness.Neutral })
-        {
-            return AlignmentResources.Lawfulness_Neutral(cultureInfo);
-        }
-
-        var lawfulness = Lawfulness switch
-        {
-            Lawfulness.Lawful => AlignmentResources.Lawfulness_Lawful(cultureInfo),
-            Lawfulness.Neutral => AlignmentResources.Lawfulness_Neutral(cultureInfo),
-            Lawfulness.Chaotic => AlignmentResources.Lawfulness_Chaotic(cultureInfo),
-            _ => throw new UnreachableException()
-        };
-        var goodness = Goodness switch
-        {
-            Goodness.Good => AlignmentResources.Goodness_Good(cultureInfo),
-            Goodness.Neutral => AlignmentResources.Goodness_Neutral(cultureInfo),
-            Goodness.Evil => AlignmentResources.Goodness_Evil(cultureInfo),
-            _ => throw new UnreachableException()
-        };
-        return $"{lawfulness} {goodness}";
-    }
 }
 
 public enum Goodness : sbyte

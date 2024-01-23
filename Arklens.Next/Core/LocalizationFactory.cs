@@ -1,1 +1,1 @@
-﻿global using LocalizationFactory = System.Func<System.Globalization.CultureInfo?, string>;
+﻿global using LocalizationFactory = System.Func<string, string>;

@@ -1,4 +1,4 @@
-﻿namespace Arklens.Next.Entities.Traits;
+﻿namespace Arklens.Next.Entities;
 
 public partial record Trait
 {

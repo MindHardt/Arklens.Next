@@ -12,7 +12,7 @@ public partial record DamageType : AlidEntity
 {
     private readonly LocalizationFactory _localizationFactory;
 
-    public override string GetLocalizedName(CultureInfo? cultureInfo = null) => _localizationFactory(cultureInfo);
+    protected override string GetLocalizedName(string culture) => _localizationFactory(culture);
 
     /// <summary>
     /// Flags used to indicate some damage type properties.
@@ -26,14 +26,14 @@ public partial record DamageType : AlidEntity
     private DamageType(
         DamageTypeFlags flags = default,
         IReadOnlyCollection<DamageType>? includedTypes = null,
-        [CallerMemberName] string ownName = "") : base(ownName)
+        [CallerMemberName] string ownName = "") : base(ownName, DamageResources.FindString)
     {
         IncludedTypes = includedTypes ?? [];
         Flags = flags | includedTypes?
             .Select(x => x.Flags)
             .Aggregate((r, l) => r | l)
             ?? default;
-        _localizationFactory = DamageResources.Find(ownName);
+        _localizationFactory = DamageResources.FindString(ownName);
     }
 }
 

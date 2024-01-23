@@ -12,9 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Entities\Traits\Trait.Racial.cs">
-        <DependentUpon>Trait.cs</DependentUpon>
-      </Compile>
       <Compile Update="Entities\DamageType.Elemental.cs">
         <DependentUpon>DamageType.cs</DependentUpon>
       </Compile>
@@ -30,6 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <AdditionalFiles Include="Entities\TraitResources.csv" />
       <None Remove="Entities\AlignmentResources.csv" />
       <AdditionalFiles Include="Entities\AlignmentResources.csv">
         <DependentUpon>Alignment.cs</DependentUpon>
@@ -43,9 +41,8 @@
         <DependentUpon>Deity.cs</DependentUpon>
       </AdditionalFiles>
       <None Remove="Entities\Traits\TraitResources.csv" />
-      <AdditionalFiles Include="Entities\Traits\TraitResources.csv" />
+      <AdditionalFiles Include="Entities\RaceResources.csv" />
       <None Remove="Entities\Races\RaceResources.csv" />
-      <AdditionalFiles Include="Entities\Races\RaceResources.csv" />
     </ItemGroup>
 
 </Project>

@@ -1,6 +1,4 @@
-﻿using Arklens.Next.Entities.Traits;
-
-namespace Arklens.Next.Entities.Races;
+﻿namespace Arklens.Next.Entities;
 
 public readonly record struct RaceTraits(Trait One, Trait Two)
 {

@@ -1,26 +1,19 @@
-﻿using System.Globalization;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Arklens.Next.Core;
-using Arklens.Next.Entities.Traits;
 using EnumerationGenerator;
 using ResourcesGenerator;
 
-namespace Arklens.Next.Entities.Races;
+namespace Arklens.Next.Entities;
 
 [AlidDomain]
 [GenerateEnumeration]
 public partial record Race : AlidEntity
 {
-    private readonly LocalizationFactory _localizationFactory;
-    public override string GetLocalizedName(CultureInfo? cultureInfo = null) => _localizationFactory(cultureInfo);
-
     public required RaceTraits Traits { get; init; }
     public required RacialCharacteristicImpact? CharacteristicImpact { get; init; }
 
-    private Race([CallerMemberName] string ownName = "") : base(ownName)
-    {
-        _localizationFactory = RaceResources.Find(ownName);
-    }
+    private Race([CallerMemberName] string ownName = "") : base(ownName, RaceResources.FindString)
+    { }
 
     public static Race Human { get; } = new()
     {

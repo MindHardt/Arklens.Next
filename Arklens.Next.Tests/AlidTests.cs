@@ -2,10 +2,9 @@ using System.Globalization;
 using System.Text.Json;
 using Arklens.Next.Core;
 using Arklens.Next.Entities;
-using Arklens.Next.Entities.Races;
-using Arklens.Next.Entities.Traits;
 using Arklens.Next.Extra;
 using Xunit.Abstractions;
+using Trait = Arklens.Next.Entities.Trait;
 
 namespace Arklens.Next.Tests;
 

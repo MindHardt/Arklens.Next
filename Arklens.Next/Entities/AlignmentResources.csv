@@ -1,7 +1,10 @@
-Name;;en
-Goodness_Good;Доброе;Good
-Goodness_Neutral;Нейтральное;Neutral
-Goodness_Evil;Злое;Evil
-Lawfulness_Lawful;Законное;Lawful
-Lawfulness_Neutral;Нейтральное;Neutral
-Lawfulness_Chaotic;Хаотичное;Chaotic
+Emoji;Name;en;;
+⚖️🙂;LawfulGood;Lawful good;Законное доброе
+🙂;NeutralGood;Neutral good;Нейтральное доброе
+🌬️🙂;ChaoticGood;Chaotic good;Хаотичное доброе
+⚖️😐;LawfulNeutral;Lawful neutral;Законное нейтральное
+😐;Neutral;Neutral;Нейтральное
+🌬️😐;ChaoticNeutral;Chaotic neutral;Хаотичное нейтральное
+⚖️😠;LawfulEvil;Lawful evil;Законное злое
+😠;NeutralEvil;Neutral evil;Нейтральное злое
+🌬️😠;ChaoticEvil;Chaotic Evil;Хаотичное злое

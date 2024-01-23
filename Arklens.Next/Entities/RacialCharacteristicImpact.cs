@@ -1,4 +1,4 @@
-﻿namespace Arklens.Next.Entities.Races;
+﻿namespace Arklens.Next.Entities;
 
 /// <summary>
 /// Contains info about race impact on characteristics.

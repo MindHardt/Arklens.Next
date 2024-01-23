@@ -13,12 +13,12 @@ public partial record Deity : AlidEntity
     private readonly LocalizationFactory _localizationFactory;
 
     public Alignment Alignment { get; }
-    public override string GetLocalizedName(CultureInfo? cultureInfo = null) => _localizationFactory(cultureInfo);
+    protected override string GetLocalizedName(string resource) => _localizationFactory(resource);
 
-    private Deity(Alignment alignment, [CallerMemberName] string ownName = "") : base(ownName)
+    private Deity(Alignment alignment, [CallerMemberName] string ownName = "") : base(ownName, DeityResources.FindString)
     {
         Alignment = alignment;
-        _localizationFactory = DeityResources.Find(ownName);
+        _localizationFactory = DeityResources.FindString(ownName);
     }
 
     public static Deity Neras { get; } = new(Alignment.LawfulGood);
