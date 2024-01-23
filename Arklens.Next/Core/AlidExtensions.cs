@@ -1,7 +1,18 @@
-﻿namespace Arklens.Next.Core;
+﻿using System.Globalization;
+
+namespace Arklens.Next.Core;
 
 public static class AlidExtensions
 {
+    /// <summary>
+    /// Gets a formatted display string for this <see cref="AlidEntity"/>.
+    /// </summary>
+    /// <param name="entity"></param>
+    /// <param name="cultureInfo"></param>
+    /// <returns></returns>
+    public static string ToDisplayString(this AlidEntity entity, CultureInfo? cultureInfo = null)
+        => $"{entity.GetEmoji()} {entity.GetLocalizedName(cultureInfo)}";
+
     /// <summary>
     /// Packs this <see cref="IEnumerable{T}"/> into a <see cref="AlidNameCollection"/>.
     /// </summary>

@@ -24,10 +24,21 @@
       <Compile Update="Entities\DamageType.Physical.cs">
         <DependentUpon>DamageType.cs</DependentUpon>
       </Compile>
+      <Compile Update="Entities\RaceTraits.cs">
+        <DependentUpon>Race.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Entities\RacialCharacteristicImpact.cs">
+        <DependentUpon>Race.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Entities\Trait.Racial.cs">
+        <DependentUpon>Trait.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="Entities\TraitResources.csv" />
+      <AdditionalFiles Include="Entities\TraitResources.csv">
+        <DependentUpon>Trait.cs</DependentUpon>
+      </AdditionalFiles>
       <None Remove="Entities\AlignmentResources.csv" />
       <AdditionalFiles Include="Entities\AlignmentResources.csv">
         <DependentUpon>Alignment.cs</DependentUpon>
@@ -41,7 +52,9 @@
         <DependentUpon>Deity.cs</DependentUpon>
       </AdditionalFiles>
       <None Remove="Entities\Traits\TraitResources.csv" />
-      <AdditionalFiles Include="Entities\RaceResources.csv" />
+      <AdditionalFiles Include="Entities\RaceResources.csv">
+        <DependentUpon>Race.cs</DependentUpon>
+      </AdditionalFiles>
       <None Remove="Entities\Races\RaceResources.csv" />
     </ItemGroup>
 

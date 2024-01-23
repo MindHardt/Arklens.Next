@@ -1,22 +1,23 @@
-Name;;en
+Emoji;Name;en;
 
 # Elemental
-Fire;Огонь;Fire
-Frost;Холод;Frost
-Acid;Кислота;Acid
-Lightning;Молния;Lightning
-Sound;Звук;Sound
+🔥;Fire;Fire;Огонь
+❄️;Frost;Frost;Холод
+⚗️;Acid;Acid;Кислота
+⛈️;Lightning;Lightning;Молния
+🔊;Sound;Sound;Звук
 
 # Magical
-Curse;Проклятие;Curse
+🧿;Curse;Curse;Проклятие
 
 # Natural
-Venom;Яд;Venom
+🐍;Venom;Venom;Яд
 
 # Physical
-Piercing;Колющий;Piercing
-Cutting;Режущий;Cutting
-Chopping;Рубящий;Chopping
-Crushing;Дробящий;Crushing
-Bite;Укус;Bite
-Claws;Когти;Claws
+📌;Piercing;Piercing;Колющий
+🔪;Cutting;Cutting;Режущий
+🪓;Chopping;Chopping;Рубящий
+🥌;Crushing;Crushing;Дробящий
+🦷;Bite;Bite;Укус
+🐈;Claws;Claws;Когти
+🐄;Horns;Horns;Рога

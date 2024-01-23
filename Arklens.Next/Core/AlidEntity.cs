@@ -28,7 +28,7 @@ public abstract partial record AlidEntity
     /// Gets Emoji of this <see cref="AlidEntity"/>
     /// </summary>
     /// <returns></returns>
-    public string GetEmoji()
+    public virtual string GetEmoji()
         => GetLocalizedName(EmojiCulture);
 
     protected AlidEntity(string ownName, Func<string, LocalizationFactory> resourceProvider)

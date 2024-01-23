@@ -9,4 +9,5 @@ public partial record DamageType
 
     public static DamageType Bite { get; } = new(includedTypes: [Piercing, Cutting, Chopping, Crushing]);
     public static DamageType Claws { get; } = new(includedTypes: [Piercing, Cutting, Chopping]);
+    public static DamageType Horns { get; } = new(includedTypes: [Piercing, Crushing]);
 }

@@ -75,7 +75,7 @@ public class AlidTests(ITestOutputHelper output)
             .Select((x, i) => (x, i));
         foreach (var entity in includedEntities)
         {
-            output.WriteLine($"{entity.i + 1}. {entity.x.Alid} {entity.x.GetLocalizedName()}");
+            output.WriteLine($"{entity.i + 1}. {entity.x.Alid} {entity.x.ToDisplayString()}");
 
             var localizations = IncludedCultures
                 .Select(culture => entity.x.GetLocalizedName(culture))
