@@ -33,6 +33,18 @@
       <Compile Update="Entities\Trait.Racial.cs">
         <DependentUpon>Trait.cs</DependentUpon>
       </Compile>
+      <Compile Update="Core\AlidType.cs">
+        <DependentUpon>Alid.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Core\OwnAlid.cs">
+        <DependentUpon>Alid.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Core\GroupAlid.cs">
+        <DependentUpon>Alid.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Core\DomainSelectorAlid.cs">
+        <DependentUpon>Alid.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

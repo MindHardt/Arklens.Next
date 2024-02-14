@@ -40,7 +40,7 @@ public abstract partial record AlidEntity
     /// <summary>
     /// The full <see cref="Alid"/> of this <see cref="AlidEntity"/>.
     /// </summary>
-    public virtual Alid Alid => new(GetType().GetDomains(), OwnName);
+    public virtual Alid Alid => new OwnAlid(GetType().GetDomains(), OwnName);
 
     #region Lookup methods
 
