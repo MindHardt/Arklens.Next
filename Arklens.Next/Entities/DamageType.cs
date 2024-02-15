@@ -1,19 +1,15 @@
-﻿using System.Globalization;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Arklens.Next.Core;
 using EnumerationGenerator;
-using ResourcesGenerator;
+using Resources.Next;
+using Resources.Next.Generated;
 
 namespace Arklens.Next.Entities;
 
 [AlidDomain("damage")]
 [GenerateEnumeration]
-public partial record DamageType : AlidEntity
+public partial record DamageType : LocalizedAlidEntity<DamageResources>
 {
-    private readonly LocalizationFactory _localizationFactory;
-
-    protected override string GetLocalizedName(string culture) => _localizationFactory(culture);
-
     /// <summary>
     /// Flags used to indicate some damage type properties.
     /// </summary>
@@ -26,14 +22,13 @@ public partial record DamageType : AlidEntity
     private DamageType(
         DamageTypeFlags flags = default,
         IReadOnlyCollection<DamageType>? includedTypes = null,
-        [CallerMemberName] string ownName = "") : base(ownName, DamageResources.FindString)
+        [CallerMemberName] string ownName = "") : base(ownName)
     {
         IncludedTypes = includedTypes ?? [];
         Flags = flags | includedTypes?
             .Select(x => x.Flags)
             .Aggregate((r, l) => r | l)
             ?? default;
-        _localizationFactory = DamageResources.FindString(ownName);
     }
 }
 

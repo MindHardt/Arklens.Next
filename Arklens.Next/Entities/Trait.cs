@@ -1,16 +1,17 @@
 ﻿using System.Runtime.CompilerServices;
 using Arklens.Next.Core;
 using EnumerationGenerator;
-using ResourcesGenerator;
+using Resources.Next;
+using Resources.Next.Generated;
 
 namespace Arklens.Next.Entities;
 
 [AlidDomain]
 [GenerateEnumeration]
-public partial record Trait : AlidEntity
+public partial record Trait : LocalizedAlidEntity<TraitResources>
 {
-    public override string GetEmoji() => "⚒️";
+    public override string Emoji => "⚒️";
 
-    public Trait([CallerMemberName] string ownName = "") : base(ownName, TraitResources.FindString)
+    public Trait([CallerMemberName] string ownName = "") : base(ownName)
     { }
 }

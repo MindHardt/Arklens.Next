@@ -1,21 +1,20 @@
-﻿using System.Diagnostics;
-using System.Globalization;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Arklens.Next.Core;
 using EnumerationGenerator;
-using ResourcesGenerator;
+using Resources.Next;
+using Resources.Next.Generated;
 
 namespace Arklens.Next.Entities;
 
 [AlidDomain]
 [GenerateEnumeration]
-public partial record Alignment : AlidEntity
+public partial record Alignment : LocalizedAlidEntity<AlignmentResources>
 {
     public Goodness Goodness { get; }
     public Lawfulness Lawfulness { get; }
 
     private Alignment(Lawfulness lawfulness, Goodness goodness, [CallerMemberName] string ownName = "")
-        : base(ownName, AlignmentResources.FindString)
+        : base(ownName)
     {
         Lawfulness = lawfulness;
         Goodness = goodness;

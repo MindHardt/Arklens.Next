@@ -1,24 +1,20 @@
-﻿using System.Globalization;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Arklens.Next.Core;
 using EnumerationGenerator;
-using ResourcesGenerator;
+using Resources.Next;
+using Resources.Next.Generated;
 
 namespace Arklens.Next.Entities;
 
 [AlidDomain]
 [GenerateEnumeration]
-public partial record Deity : AlidEntity
+public partial record Deity : LocalizedAlidEntity<DeityResources>
 {
-    private readonly LocalizationFactory _localizationFactory;
-
     public Alignment Alignment { get; }
-    protected override string GetLocalizedName(string resource) => _localizationFactory(resource);
 
-    private Deity(Alignment alignment, [CallerMemberName] string ownName = "") : base(ownName, DeityResources.FindString)
+    private Deity(Alignment alignment, [CallerMemberName] string ownName = "") : base(ownName)
     {
         Alignment = alignment;
-        _localizationFactory = DeityResources.FindString(ownName);
     }
 
     public static Deity Neras { get; } = new(Alignment.LawfulGood);

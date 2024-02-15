@@ -78,7 +78,7 @@ public class AlidTests(ITestOutputHelper output)
             output.WriteLine($"{entity.i + 1}. {entity.x.Alid} {entity.x.ToDisplayString()}");
 
             var localizations = IncludedCultures
-                .Select(culture => entity.x.GetLocalizedName(culture))
+                .Select(culture => entity.x.GetName(culture))
                 .ToArray();
 
             Assert.NotEqual(localizations[0], localizations[1]);

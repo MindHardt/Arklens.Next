@@ -52,7 +52,4 @@ public readonly partial record struct AlidName(string Value)
 
     public static implicit operator string(AlidName alidName)
         => alidName.Value;
-
-    public static implicit operator AlidName(string value)
-        => new(value);
 }

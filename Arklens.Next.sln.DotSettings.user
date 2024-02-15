@@ -1,4 +1,8 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
+  &lt;Assembly Path="C:\Users\ИгорьБ\.nuget\packages\mindhardt.resources.next\1.0.4\lib\net8.0\Resources.Next.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\ИгорьБ\.nuget\packages\mindhardt.resources.next\1.0.5\lib\net8.0\Resources.Next.dll" /&gt;&#xD;
+&lt;/AssemblyExplorer&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a826f90c_002D7b29_002D4bab_002D9310_002Db809f68fbee3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AlidTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::287069C0-9162-4F03-A247-7C79DBF00EE4::net8.0::Arklens.Next.Tests.AlidTests&lt;/TestId&gt;&#xD;

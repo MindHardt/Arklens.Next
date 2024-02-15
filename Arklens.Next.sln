@@ -6,7 +6,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arklens.Next.Generators", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arklens.Next.Tests", "Arklens.Next.Tests\Arklens.Next.Tests.csproj", "{287069C0-9162-4F03-A247-7C79DBF00EE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterResources.Generator", "BetterResources\src\BetterResources.Generator\BetterResources.Generator.csproj", "{F76DDF49-43ED-44C3-AA07-1E23BB1ECC11}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{72B20C7D-4D26-4F4B-BC07-0B1FAF074D5E}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.github\workflows\publish.yml = .github\workflows\publish.yml
+		icon.png = icon.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +31,5 @@ Global
 		{287069C0-9162-4F03-A247-7C79DBF00EE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{287069C0-9162-4F03-A247-7C79DBF00EE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{287069C0-9162-4F03-A247-7C79DBF00EE4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F76DDF49-43ED-44C3-AA07-1E23BB1ECC11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F76DDF49-43ED-44C3-AA07-1E23BB1ECC11}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F76DDF49-43ED-44C3-AA07-1E23BB1ECC11}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F76DDF49-43ED-44C3-AA07-1E23BB1ECC11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

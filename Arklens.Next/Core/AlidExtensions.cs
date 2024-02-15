@@ -5,13 +5,11 @@ namespace Arklens.Next.Core;
 public static class AlidExtensions
 {
     /// <summary>
-    /// Gets a formatted display string for this <see cref="AlidEntity"/>.
+    /// Gets a display string for this <see cref="AlidEntity"/> with emoji.
     /// </summary>
-    /// <param name="entity"></param>
-    /// <param name="cultureInfo"></param>
-    /// <returns></returns>
+    /// <example>🧝 Elf</example>
     public static string ToDisplayString(this AlidEntity entity, CultureInfo? cultureInfo = null)
-        => $"{entity.GetEmoji()} {entity.GetLocalizedName(cultureInfo)}";
+        => $"{entity.Emoji} {entity.GetName(cultureInfo)}";
 
     /// <summary>
     /// Packs this <see cref="IEnumerable{T}"/> into a <see cref="AlidNameCollection"/>.
