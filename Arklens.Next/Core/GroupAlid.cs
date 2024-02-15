@@ -1,6 +1,6 @@
 ﻿namespace Arklens.Next.Core;
 
-public record GroupAlid(
+public class GroupAlid(
     AlidNameCollection Domains,
     AlidName GroupName)
     : Alid(Domains)

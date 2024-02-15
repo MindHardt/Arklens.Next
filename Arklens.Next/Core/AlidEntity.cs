@@ -1,46 +1,38 @@
 ﻿using System.Globalization;
+using Resources.Next;
 
 namespace Arklens.Next.Core;
 
 public abstract partial record AlidEntity
 {
-    private readonly LocalizationFactory _localizationFactory;
-
     /// <summary>
     /// This instance's <see cref="AlidName"/>.
     /// </summary>
     public AlidName OwnName { get; }
+    
+    /// <summary>
+    /// Gets the emoji of this <see cref="AlidEntity"/>.
+    /// </summary>
+    public abstract string Emoji { get; }
 
     /// <summary>
-    /// Gets a localized name of this <see cref="AlidEntity"/>.
+    /// Gets localized name of this <see cref="AlidEntity"/>.
     /// </summary>
     /// <param name="culture"></param>
     /// <returns></returns>
-    protected virtual string GetLocalizedName(string culture) => _localizationFactory(culture);
+    public abstract string GetName(CultureInfo? culture = null);
 
-    /// <inheritdoc cref="GetLocalizedName(string)"/>
-    public string GetLocalizedName(CultureInfo? cultureInfo = null)
-        => GetLocalizedName((cultureInfo ?? Thread.CurrentThread.CurrentCulture).TwoLetterISOLanguageName);
-
-    public const string EmojiCulture = "Emoji";
-
-    /// <summary>
-    /// Gets Emoji of this <see cref="AlidEntity"/>
-    /// </summary>
-    /// <returns></returns>
-    public virtual string GetEmoji()
-        => GetLocalizedName(EmojiCulture);
-
-    protected AlidEntity(string ownName, Func<string, LocalizationFactory> resourceProvider)
+    
+    // ReSharper disable once VirtualMemberCallInConstructor
+    protected AlidEntity(string ownName)
     {
         OwnName = AlidName.Create(ownName);
-        _localizationFactory = resourceProvider(ownName);
     }
 
     /// <summary>
     /// The full <see cref="Alid"/> of this <see cref="AlidEntity"/>.
     /// </summary>
-    public virtual Alid Alid => new OwnAlid(GetType().GetDomains(), OwnName);
+    public virtual OwnAlid Alid => new(GetType().GetDomains(), OwnName);
 
     #region Lookup methods
 

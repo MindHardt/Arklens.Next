@@ -1,1 +1,0 @@
-﻿global using LocalizationFactory = System.Func<string, string>;

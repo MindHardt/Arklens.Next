@@ -1,6 +1,6 @@
 ﻿namespace Arklens.Next.Core;
 
-public record DomainSelectorAlid(
+public class DomainSelectorAlid(
     AlidNameCollection Domains)
     : Alid(Domains)
 {

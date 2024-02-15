@@ -17,7 +17,7 @@ namespace Arklens.Next.Core;
 /// </code>
 /// </para>
 /// </summary>
-public abstract partial record Alid(
+public abstract partial class Alid(
     AlidNameCollection Domains)
     : IParsable<Alid>
 {
@@ -58,16 +58,14 @@ public abstract partial record Alid(
         ArgumentNullException.ThrowIfNull(s);
         if (s.Length > MaxLength)
         {
-            throw new ArgumentException(
-                $"Value is too long for an alid. Maximum allowed length is {MaxLength}.",
-                nameof(s));
+            throw new FormatException(
+                $"Value is too long for an alid. Maximum allowed length is {MaxLength}.");
         }
 
         if (ValidationRegex().Match(s) is not { Success: true } match)
         {
-            throw new ArgumentException(
-                $"Value failed alid validation. Alids must match with regex {ValidationRegexString}",
-                nameof(s));
+            throw new FormatException(
+                $"Value failed alid validation. Alids must match with regex {ValidationRegexString}");
         }
 
         return BuildFromMatch(match);

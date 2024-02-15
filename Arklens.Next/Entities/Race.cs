@@ -1,18 +1,19 @@
 ﻿using System.Runtime.CompilerServices;
 using Arklens.Next.Core;
 using EnumerationGenerator;
-using ResourcesGenerator;
+using Resources.Next;
+using Resources.Next.Generated;
 
 namespace Arklens.Next.Entities;
 
 [AlidDomain]
 [GenerateEnumeration]
-public partial record Race : AlidEntity
+public partial record Race : LocalizedAlidEntity<RaceResources>
 {
     public required RaceTraits Traits { get; init; }
     public required RacialCharacteristicImpact? CharacteristicImpact { get; init; }
 
-    private Race([CallerMemberName] string ownName = "") : base(ownName, RaceResources.FindString)
+    private Race([CallerMemberName] string ownName = "") : base(ownName)
     { }
 
     public static Race Human { get; } = new()
